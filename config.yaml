@@ -1,0 +1,46 @@
+artifact-service-path: /idp/SAML2/SOAP/ArtifactResolution
+assets-path: ui/static
+attribute-service-path: /idp/SAML2/SOAP/AttributeQuery
+cookie-name: idp-sess
+digest-algorithm: http://www.w3.org/2001/04/xmlenc#sha256
+ecp-service-path: /idp/SAML2/SOAP/ECP
+sp-medata-urls:
+  - url: http://localhost:7777/sso/api/v1/saml/metadata
+ldap:
+    addr: ldap://localhost:30063
+    binddn: cn=admin,dc=aiframe,dc=com
+    binddn_credential: xxxxxxxxx
+    search_base: ou=people,dc=aiframe,dc=com
+listen-address: 127.0.0.1:9443
+metadata-path: /idp/metadata
+redis:
+    address: 127.0.0.1:6379
+    password: ""
+saml-attribute-name-format: urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+server-name: http://localhost:9443
+signature-algorithm: ""
+slo-service-path: /idp/SAML2/Redirect/SLO
+sps:
+    - entityid: SSO
+      assertionconsumerservices:
+        - index: 1
+          isdefault: false
+          binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+          location: http://localhost:7777/sso/api/v1/saml/acs
+        - index: 2
+          isdefault: false
+          binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact
+          location: http://localhost:7777/sso/api/v1/saml/acs
+      singlelogoutservices:
+        - index: 0
+          isdefault: false
+          binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+          location: http://localhost:7777/sso/api/v1/saml/slo
+      certificate: MIICvDCCAaQCCQDZukuEJSugVzANBgkqhkiG9w0BAQsFADAgMR4wHAYDVQQDDBVteXNlcnZpY2UuZXhhbXBsZS5jb20wHhcNMjIwNzA3MDI1MTU5WhcNMjMwNzA3MDI1MTU5WjAgMR4wHAYDVQQDDBVteXNlcnZpY2UuZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDpv03MRHZ4ghtX/UMsx6si9olukDtoHg/2mb17ny+UiDaXkgEmFYA06p4eef93xwscw8ubmumEf7G4TsD4hUsU57caMdBgK8kz4uwAnCPoDJPkudH0zqfKBm9ghMY3JK6i/UMAEUayFqsDZZ9D2L5wZ1mY+H7UgrTzasBuqMLl/FgFF/iecSFesSs6bHihjXmZKh7eia9yRCJT8zLNCXoTl8k05nXBRpEBTrFhiOgAZ4vYWgSpFTEYPyFcrF5vPlwD8SVdoVOJcp+mW7uM3wRSVfHNI9nBMcJBRn9gEbZpQvVLwDiCTSeD8wan7STgbko7Ifr9EF99GYGylS7GSRktAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAOXDwagtlt93ZrB8I9KOp+n1EjeuGVvZY1Cj8eNctZnKMYUnFti5YW4VODDuVu/M5nN4TaXXkTFhNP1adaR3Sswan3Fyhw++1oXMNJQYZbbs3v6Ffw5Cppi417FI6PtsqWn2KmytR1Ez9vxqejvZZb4CfSjD4mzNOS42rfH41MJHdezYu9mJZIRRa1r8BNfRXdwlq7hseh5h6izBfYmTzajm0tg+tHzK8oxO83Jv//wnv17kzQiajjU/pbRC9jLirDn5WuJ1WnesFt6gwh8Y2x472f2/bZxzFdngTvd7UlQizEIBktPkS6aml9WzbZU5Or53hGhLSknKPfFhbvFlgG0=
+sso-service-path: /SAML2/Redirect/SSO
+temp-cache-duration: 5m
+tls-ca: hack/tls-setup/certs/ca.pem
+tls-certificate: hack/tls-setup/certs/idp.pemsss
+tls-private-key: hack/tls-setup/certs/idp-key.pemss
+tls_enable: false
+user-cache-duration: 8h
